@@ -10,12 +10,13 @@ docker run `
 -v C:\Docker\SQL:/sql `
 -d mcr.microsoft.com/mssql/server:latest
 
-#Automate Deployment of .SQL Files 
+#Install dbatools
 Install-Module -Name dbatools 
 
-#Manually connect
-$cred = Get-Credential SA
-New-DbaCmConnection -ComputerName localhost -Credential $cred
+#Connect to local MS SQL Server 2019
+help New-DbaCmConnection -Examples
+$cred = Get-Credential 
+New-DbaCmConnection -ComputerName localhost -Credential $cred -CimWinRMOptions $options -DisableBadCredentialCache -OverrideExplicitCredential
 
 #Create a new connection object for remote computer management(Cm)
 New-DbaCmConnection -ComputerName localhost -UseWindowsCredentials
@@ -29,7 +30,7 @@ Get-DbatoolsLog
 
 New-DbaConnectionString -SqlInstance localhost -TrustServerCertificate 'TRUE'
 
-help Get-DbaCredential -Examples
+
 
 param( 
     
