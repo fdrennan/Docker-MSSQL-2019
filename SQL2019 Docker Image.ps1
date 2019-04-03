@@ -13,6 +13,11 @@ docker run `
 #Install dbatools
 Install-Module -Name dbatools 
 
+#Set-up credentials in xml document
+$CredentialPath = 'C:\Docker\SQL\credentials.xml'
+Get-Credential | Export-Clixml -Path $CredentialPath
+$cred = Import-Clixml $CredentialPath 
+
 #Connect to local MS SQL Server 2019
 help New-DbaCmConnection -Examples
 $cred = Get-Credential 
