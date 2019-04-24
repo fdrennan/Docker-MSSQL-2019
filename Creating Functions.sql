@@ -12,14 +12,14 @@ DECLARE @bar AS INT = 1
 SELECT dbo.foo(@bar)
 
 DECLARE @bar INT = 1
-DECLARE @plusone INT
-SELECT @plusone = dbo.foo(@bar)
-SELECT @plusone
+DECLARE @result INT
+SELECT @result = dbo.foo(@bar)
+SELECT @result
 
 -- EXEC & store result in variable
-DECLARE @plusone AS numeric
-EXEC @plusone = dbo.foo @bar = 1
-SELECT 'Foo Results:', @plusone
+DECLARE @result AS numeric
+EXEC @result = dbo.foo @bar = 1
+SELECT 'Foo Results:', @result
 
 --Look at the function to see if it's deterministic(1) or nondeterministic(0)
 SELECT OBJECTPROPERTY(OBJECT_ID('[dbo].[foo]'),'IsDeterministic')
@@ -39,6 +39,9 @@ DECLARE @param2 INT
 SET @param1 = 1
 SET @param2 = 2
 SELECT dbo.MyScalarFunction(@param1, @param2)
+
+
+--I should create a dummy table here
 
 --Create a table value UDF
 CREATE FUNCTION TableFunction(@StartDate AS datetime)
