@@ -9,7 +9,7 @@ $Arguments = @(
 "-n10", #How many simultaneous sessions should be established
 "-r5", #How many iterations should be performed
 "-q", #Quite mode doesn't return rows
-"-o`"..\ostress`"") #Logging folder
+"-o`"..\Ostress Code\Ostress Logs`"") #Logging folder
 
 #Set the path for Ostress.exe
 $Command = "C:\Program Files\Microsoft Corporation\RMLUtils\ostress.exe"
