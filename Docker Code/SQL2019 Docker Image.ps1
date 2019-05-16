@@ -20,22 +20,24 @@ $cred = Import-Clixml $CredentialPath
 
 #Connect to local MS SQL Server 2019
 help New-DbaCmConnection -Examples
-$cred = Get-Credential 
+#$cred = Get-Credential 
 New-DbaCmConnection -ComputerName localhost -Credential $cred -CimWinRMOptions $options -DisableBadCredentialCache -OverrideExplicitCredential
-
-#Create a new connection object for remote computer management(Cm)
-New-DbaCmConnection -ComputerName localhost -UseWindowsCredentials
 
 #Look at connection cache and run a test
 Get-DbaCmConnection
 Test-DbaCmConnection -ComputerName localhost -Force
 
+Get-DbaCredential -SqlInstance localhost
+
 #Get Logs
 Get-DbatoolsLog
 
+
+
+#Create a new connection object for remote computer management(Cm)
+New-DbaCmConnection -ComputerName localhost -UseWindowsCredentials
+
 New-DbaConnectionString -SqlInstance localhost -TrustServerCertificate 'TRUE'
-
-
 
 param( 
     
